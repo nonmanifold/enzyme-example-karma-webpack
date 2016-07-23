@@ -30,6 +30,10 @@ module.exports = function(config) {
             test: /\.json$/,
             loader: 'json',
           },
+          {
+            test: /\.css$/,
+            loader: 'style-loader!css-loader?modules',
+          }
         ]
       },
       externals: {

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-
+import styles from './style.css'
 const propTypes = {};
 
 const defaultProps = {};
@@ -11,7 +11,7 @@ class Foo extends React.Component {
 
   render() {
     return (
-      <div className="foo" />
+      <div className={styles.what} />
     );
   }
 }
