@@ -18,6 +18,7 @@
     "chai": "^3.5.0",
     "css-loader": "^0.23.1",
     "enzyme": "^2.0.0",
+    "isparta-loader": "^2.0.0",
     "istanbul-instrumenter-loader": "^0.2.0",
     "jasmine-core": "^2.4.1",
     "json-loader": "^0.5.4",

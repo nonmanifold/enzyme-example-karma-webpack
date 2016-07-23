@@ -10,13 +10,27 @@ module.exports = function(config) {
 
     preprocessors: {
       // add webpack as preprocessor
-      'src/**/*.js': ['webpack', 'coverage', 'sourcemap'],
-      'test/**/*.js': ['webpack', 'sourcemap']
+      'test/**/*.js': ['webpack']
     },
 
-    webpack: { //kind of a copy of your webpack config
+    webpack: {
+      node : {
+        fs: 'empty'
+      },
       devtool: 'inline-source-map', //just do inline source maps instead of the default
+
+      isparta: {
+        embedSource: true,
+        noAutoWrap: true,
+        // these babel options will be passed only to isparta and not to babel-loader
+        babel: {
+          presets: ['airbnb']
+        }
+      },
       module: {
+        preLoaders: [
+          { test: /\.js$/, loader: 'isparta', exclude: [path.resolve(__dirname, 'node_modules'),path.resolve(__dirname, 'test')]}
+        ],
         loaders: [
           {
             test: /\.js$/,
@@ -35,10 +49,7 @@ module.exports = function(config) {
             loader: 'style-loader!css-loader?modules',
           }
         ],
-        postLoaders: [ { //delays coverage til after tests are run, fixing transpiled source coverage error
-          test: /\.js$/,
-          exclude: /(test|node_modules)\//,
-          loader: 'istanbul-instrumenter' } ]
+
       },
       externals: {
         'react/lib/ExecutionEnvironment': true,
@@ -61,11 +72,6 @@ module.exports = function(config) {
 
     coverageReporter: { type : 'lcov', dir : 'coverage/' },
 
-    babelPreprocessor: {
-      options: {
-        presets: ['airbnb']
-      }
-    },
     reporters: ['progress', 'coverage'],
     port: 9876,
     colors: true,
