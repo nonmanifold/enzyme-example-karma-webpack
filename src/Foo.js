@@ -8,7 +8,9 @@ class Foo extends React.Component {
   constructor(props) {
     super(props);
   }
-
+  untestedMethod(){
+    this.fail()
+  }
   render() {
     return (
       <div className={styles.what} />

@@ -10,7 +10,7 @@ module.exports = function(config) {
 
     preprocessors: {
       // add webpack as preprocessor
-      'src/**/*.js': ['webpack', 'sourcemap'],
+      'src/**/*.js': ['webpack', 'coverage', 'sourcemap'],
       'test/**/*.js': ['webpack', 'sourcemap']
     },
 
@@ -34,7 +34,11 @@ module.exports = function(config) {
             test: /\.css$/,
             loader: 'style-loader!css-loader?modules',
           }
-        ]
+        ],
+        postLoaders: [ { //delays coverage til after tests are run, fixing transpiled source coverage error
+          test: /\.js$/,
+          exclude: /(test|node_modules)\//,
+          loader: 'istanbul-instrumenter' } ]
       },
       externals: {
         'react/lib/ExecutionEnvironment': true,
@@ -51,16 +55,18 @@ module.exports = function(config) {
       'karma-jasmine',
       'karma-sourcemap-loader',
       'karma-chrome-launcher',
-      'karma-phantomjs-launcher'
+      'karma-phantomjs-launcher',
+      'karma-coverage'
     ],
 
+    coverageReporter: { type : 'lcov', dir : 'coverage/' },
 
     babelPreprocessor: {
       options: {
         presets: ['airbnb']
       }
     },
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
