@@ -14,6 +14,7 @@
     "../typings/globals/react/index.d.ts",
     "../typings/globals/react-dom/index.d.ts",
     "../typings/globals/jasmine/index.d.ts",
+    "../typings/globals/enzyme/index.d.ts",
     "../typings/globals/node/index.d.ts"
   ]
 }
