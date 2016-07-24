@@ -16,7 +16,7 @@ module.exports = {
     module: {
         preLoaders: [
             {
-                test: /\.js(x?)$/, // .js and .jsx
+                test: /\.(t|j)s(x?)$/, // .js, .ts, .tsx and .jsx
                 loader: 'isparta',
                 exclude: [/node_modules/, path.resolve(__dirname, 'test')]
             }
@@ -47,7 +47,7 @@ module.exports = {
 
     },
     resolve: {
-        extensions: ['', '.tsx','.ts', '.jsx', '.js', '.json']
+        extensions: ['', '.tsx', '.ts', '.jsx', '.js', '.json']
     },
     externals: {
         'react/lib/ExecutionEnvironment': true,
