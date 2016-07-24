@@ -1,0 +1,9 @@
+{
+  "globalDependencies": {
+    "enzyme": "registry:dt/enzyme#2.4.1+20160709041153",
+    "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
+    "node": "registry:dt/node#6.0.0+20160720070758",
+    "react": "registry:dt/react#0.14.0+20160720060442",
+    "react-dom": "registry:dt/react-dom#0.14.0+20160412154040"
+  }
+}
