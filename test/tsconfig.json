@@ -1,0 +1,19 @@
+{
+  "compileOnSave": false,
+  "filesGlob": [
+    "**/*.{ts,tsx}"
+  ],
+  "compilerOptions": {
+    "jsx": "preserve",
+    "target": "es6",
+    "noImplicitAny": true,
+    "preserveConstEnums": true,
+    "sourceMap": true
+  },
+  "files": [
+    "../typings/globals/react/index.d.ts",
+    "../typings/globals/react-dom/index.d.ts",
+    "../typings/globals/jasmine/index.d.ts",
+    "../typings/globals/node/index.d.ts"
+  ]
+}

@@ -5,57 +5,17 @@ module.exports = function(config) {
     basePath: '',
     frameworks: ['jasmine'],
     files: [
-      'test/**/*.js'
+      'test/**/*.js*',
+      'test/**/*.ts*'
     ],
 
     preprocessors: {
       // add webpack as preprocessor
-      'test/**/*.js': ['webpack']
+      'test/**/*.js*': ['webpack'],
+      'test/**/*.ts*': ['webpack'],
     },
 
-    webpack: {
-      node : {
-        fs: 'empty'
-      },
-      devtool: 'inline-source-map', //just do inline source maps instead of the default
-
-      isparta: {
-        embedSource: true,
-        noAutoWrap: true,
-        // these babel options will be passed only to isparta and not to babel-loader
-        babel: {
-          presets: ['airbnb']
-        }
-      },
-      module: {
-        preLoaders: [
-          { test: /\.js$/, loader: 'isparta', exclude: [path.resolve(__dirname, 'node_modules'),path.resolve(__dirname, 'test')]}
-        ],
-        loaders: [
-          {
-            test: /\.js$/,
-            loader: 'babel',
-            exclude: path.resolve(__dirname, 'node_modules'),
-            query: {
-              presets: ['airbnb']
-            }
-          },
-          {
-            test: /\.json$/,
-            loader: 'json',
-          },
-          {
-            test: /\.css$/,
-            loader: 'style-loader!css-loader?modules',
-          }
-        ],
-
-      },
-      externals: {
-        'react/lib/ExecutionEnvironment': true,
-        'react/lib/ReactContext': true
-      }
-    },
+    webpack: require('./webpack.config'),
 
     webpackServer: {
       noInfo: true //please don't spam the console when running in karma!
