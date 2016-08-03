@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 module.exports = {
     node: {
         fs: 'empty'
@@ -41,6 +42,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
+                exclude: /node_modules/,
                 loader: 'style-loader!css-loader?modules',
             }
         ],
@@ -56,5 +58,15 @@ module.exports = {
     tslint: {
         failOnHint: true,
         configuration: require('./tslint.json')
-    }
+    },
+    plugins: [
+        new webpack.DllReferencePlugin({
+            context:  '.',
+            manifest: require('./dll/vendor-manifest.json')
+        }),
+        new webpack.DllReferencePlugin({
+            context:  '.',
+            manifest: require('./dll/testUtils-manifest.json')
+        })
+    ]
 };

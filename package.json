@@ -45,8 +45,10 @@
     "webpack": "^1.12.12"
   },
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start --single-run --browsers PhantomJS",
-    "test:watch": "./node_modules/karma/bin/karma start"
+    "build:dll": "node node_modules/webpack/bin/webpack --config dll.webpack.config.js",
+    "build:perf": "npm run build:dll && node node_modules/webpack/bin/webpack --config webpack.config.js test/silly-test.js out.tmp --profile --json >stats.json",
+    "test": "npm run build:dll && node node_modules/karma/bin/karma start --single-run --browsers PhantomJS",
+    "test:watch": "npm run build:dll && node node_modules/karma/bin/karma start"
   },
   "repository": {
     "type": "git",

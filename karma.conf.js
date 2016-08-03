@@ -5,14 +5,16 @@ module.exports = function (config) {
         basePath: '',
         frameworks: ['jasmine'],
         files: [
-            'test/**/*.js*',
-            'test/**/*.ts*'
+            'dll/vendor.js',
+            'dll/testUtils.js',
+            'test/**/*-test.js*',
+            'test/**/*-test.ts*'
         ],
 
         preprocessors: {
             // add webpack as preprocessor
-            'test/**/*.js*': ['webpack'],
-            'test/**/*.ts*': ['webpack'],
+            'test/**/*-test.js*': ['webpack'],
+            'test/**/*-test.ts*': ['webpack'],
         },
 
         webpack: require('./webpack.config'),
